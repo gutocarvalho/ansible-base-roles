@@ -1,0 +1,12 @@
+---
+# vars file for users
+
+create_users:
+  - username: gutocarvalho
+    groups: "sudo"
+  - username: guto
+    groups: "sudo"
+
+remove_users:
+  - username: jose
+  - username: augusto

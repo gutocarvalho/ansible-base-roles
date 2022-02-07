@@ -1,0 +1,40 @@
+---
+# tasks file for prereq
+
+- name: Updating apt package indexes
+  apt:
+    update_cache: yes
+
+- name: Updating all packages to their latest version
+  apt:
+    name: "*"
+    state: latest
+
+- name: Upgrading the OS (apt-get dist-upgrade)
+  apt:
+    upgrade: dist
+
+- name: Installing git
+  apt:
+    name: git 
+    state: latest
+
+- name: "Installing common packages"
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ packages }}"
+
+- name: Installing neofetch
+  apt:
+    name: neofetch
+    state: latest
+
+- name: "Configuring neofetch"
+  template:
+    src: prereq/files/neofetch_config.j2
+    dest:  /etc/neofetch.cfg
+
+- name: "Enabling neofetch on login"
+  template:
+    src: prereq/files/neofetch.j2
+    dest:  /etc/profile.d/neofetch.sh

@@ -1,0 +1,21 @@
+---
+# tasks file for users
+
+- name: "Creating user accounts with sudo permissions"
+  user:
+    name: "{{ item.username }}"
+    groups:  "{{ item.groups }}"
+    state:  "present"
+  with_items: "{{ create_users }}"
+
+- name: "Adding authorized keys to the users"
+  authorized_key:
+      user: "{{ item.username }}"
+      key: "{{ lookup('file', 'files/ssh/'+ item.username + '.pub') }}"
+  with_items: "{{ create_users }}"
+
+- name: "Removing user accounts"
+  user:
+    name: "{{ item.username }}"
+    state:  "absent"
+  with_items: "{{ remove_users }}"

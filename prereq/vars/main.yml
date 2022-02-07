@@ -1,0 +1,11 @@
+---
+# vars file for prereq
+
+packages:
+  - vim
+  - wget
+  - curl
+  - nano
+  - netcat
+  - net-tools
+  - htop

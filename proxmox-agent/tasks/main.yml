@@ -1,0 +1,7 @@
+---
+# tasks file for proxmox-agent
+
+- name: Installing qemu-guest-agent
+  apt:
+    name: qemu-guest-agent
+    state: latest

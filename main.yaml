@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  user: gutocarvalho
+  become: true
+  vars:
+    lets: "go"
+  roles:
+    - users
+    - prereq
+    - proxmox-agent
